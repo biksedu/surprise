@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BIKS — তোমার সন্তানের জন্য আজকের বিশেষ উপহার 🎁</title>
+  <meta name="description" content="BIKS - British International Kids School | প্রতিবার স্ক্যান করলে তোমার সন্তানের জন্য থাকবে এক নতুন মজার অনুপ্রেরণামূলক বার্তা ও বিশেষ অফার।">
+  
+  <!-- Kalpurush Bengali Font CDN -->
+  <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom Tailwind Config for Theme Colors -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Kalpurush"', 'sans-serif'],
+          },
+          colors: {
+            biksBlue: '#0b63d6',
+            biksNavy: '#102542',
+            biksPink: '#e91e63',
+            biksYellow: '#ff9800',
+            biksBg: '#f0f6ff',
+          },
+          animation: {
+            'bounce-slow': 'bounce 2s infinite',
+            'wiggle': 'wiggle 0.5s ease-in-out infinite',
+            'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            wiggle: {
+              '0%, 100%': { transform: 'rotate(-3deg)' },
+              '50%': { transform: 'rotate(3deg)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Premium glassmorphism effects */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Smooth custom transitions */
+    .transition-all-300 {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="font-sans bg-biksBg text-biksNavy selection:bg-biksPink selection:text-white overflow-x-hidden">
+
+  <!-- Top Navigation/Brand Bar -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-blue-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <div class="bg-gradient-to-tr from-biksBlue to-blue-400 w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-md">
+          B
+        </div>
+        <div>
+          <span class="block font-bold text-xl text-biksBlue leading-none tracking-tight">BIKS</span>
+          <span class="text-[10px] uppercase tracking-wider text-slate-500 font-medium">International School</span>
+        </div>
+      </div>
+      <div class="flex items-center space-x-3">
+        <a href="https://api.whatsapp.com/send?phone=8801815650971&text=BIKS%20Admission%20Query" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold transition-all shadow-md flex items-center space-x-1">
+          <i class="fab fa-whatsapp"></i>
+          <span class="hidden sm:inline">যোগাযোগ</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero & Mascot Zone -->
+  <main class="max-w-6xl mx-auto px-4 py-8 md:py-12">
+    
+    <!-- Hero Title -->
+    <div class="text-center mb-8">
+      <span class="inline-flex items-center space-x-2 bg-blue-100 text-biksBlue text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-3">
+        <span class="w-2 h-2 rounded-full bg-blue-500 animate-ping"></span>
+        <span>স্পেশাল গিফট ও অফার</span>
+      </span>
+      <h1 class="text-3xl md:text-5xl font-black text-slate-800 leading-tight">
+        🎁 তোমার জন্য আজকের <span class="text-transparent bg-clip-text bg-gradient-to-r from-biksBlue via-indigo-600 to-biksPink">চমক!</span> 🎉
+      </h1>
+      <p class="text-slate-600 mt-2 text-sm md:text-base max-w-xl mx-auto">
+        নিচের ম্যাজিক গিফট বক্সে ক্লিক করে দেখো আজ তোমার ভাগ্যে কোন সুন্দর বন্ধু অপেক্ষা করছে!
+      </p>
+    </div>
+
+    <!-- Interactive Kids Zone -->
+    <section class="max-w-2xl mx-auto mb-16">
+      <div class="relative glass-card rounded-3xl p-6 md:p-8 shadow-xl border border-white flex flex-col items-center justify-center overflow-hidden min-h-[400px]">
+        
+        <!-- Confetti Canvas Background -->
+        <canvas id="confetti-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
+
+        <!-- Dynamic Gift Stage -->
+        <div id="gift-stage" class="w-full flex flex-col items-center justify-center relative z-20">
+          
+          <!-- Closed Gift Box Box (Initial State) -->
+          <div id="gift-closed" class="cursor-pointer group flex flex-col items-center transition-transform hover:scale-105" onclick="openGift()">
+            <div class="relative w-44 h-44 flex items-center justify-center">
+              <!-- Glow Effect -->
+              <div class="absolute inset-0 bg-yellow-300 rounded-full filter blur-xl opacity-40 group-hover:opacity-60 transition-all duration-500 animate-pulse"></div>
+              
+              <!-- Giant Animated Present Box Emoji -->
+              <div class="text-8xl select-none animate-bounce-slow filter drop-shadow-lg group-hover:animate-wiggle">
+                🎁
+              </div>
+            </div>
+            <p class="mt-4 text-biksBlue font-bold text-lg md:text-xl group-hover:text-biksPink transition-colors flex items-center space-x-2">
+              <span>উপহারটি খুলতে এখানে চাপো!</span>
+              <i class="fas fa-hand-pointer animate-pulse"></i>
+            </p>
+            <p class="text-slate-400 text-xs mt-1">ক্লিক করলেই মিলবে একটি জাদুকরী চমক!</p>
+          </div>
+
+          <!-- Opened Gift Showcase (Hidden Initially) -->
+          <div id="gift-opened" class="hidden w-full flex flex-col items-center text-center animate-fade-in">
+            <!-- Animal Card Container -->
+            <div id="animal-card" class="w-full max-w-md bg-gradient-to-b from-yellow-50 to-orange-50 rounded-2xl p-6 border-2 border-dashed border-biksYellow/40 shadow-inner relative overflow-hidden mb-6">
+              
+              <!-- Sparkles/Confetti Graphic Icons -->
+              <div class="absolute top-3 left-3 text-2xl opacity-40">✨</div>
+              <div class="absolute bottom-3 right-3 text-2xl opacity-40">🌟</div>
+
+              <!-- Animal Icon -->
+              <div id="animal-emoji" class="text-7xl mb-4 select-none filter drop-shadow-md transform transition-transform duration-500 hover:scale-110">
+                🦁
+              </div>
+              
+              <!-- Message Text -->
+              <div id="message-text" class="text-slate-800 font-semibold text-lg md:text-xl leading-relaxed px-2">
+                <!-- Dynamic Content Will Inject Here -->
+              </div>
+            </div>
+
+            <!-- Interaction Buttons -->
+            <div class="flex flex-wrap justify-center gap-3">
+              <button onclick="shuffleGift()" class="bg-gradient-to-r from-biksBlue to-blue-600 hover:from-blue-600 hover:to-biksBlue text-white font-bold px-6 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all flex items-center space-x-2 text-sm">
+                <i class="fas fa-redo-alt animate-spin-slow"></i>
+                <span>অন্য আরেকটি চমক দেখো!</span>
+              </button>
+              <button onclick="copyGiftMessage()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-5 py-2.5 rounded-full transition-all flex items-center space-x-2 text-sm border border-slate-200">
+                <i class="far fa-copy"></i>
+                <span id="copy-btn-text">শেয়ার করতে কপি করো</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Parents Section (অভিভাবকদের জন্য বার্তা) -->
+    <section class="mb-16">
+      <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100 relative overflow-hidden">
+        
+        <!-- Background Accents -->
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-50 rounded-full filter blur-2xl"></div>
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-pink-50 rounded-full filter blur-2xl"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto">
+          
+          <div class="text-center mb-8">
+            <span class="inline-flex items-center space-x-1.5 bg-pink-100 text-biksPink text-xs font-semibold px-3 py-1 rounded-full mb-3">
+              <i class="fas fa-heart"></i>
+              <span>প্রিয় অভিভাবকদের জন্য বিশেষ চিঠি</span>
+            </span>
+            <h2 class="text-2xl md:text-4xl font-bold text-slate-800">🌟 আপনার সন্তানের উজ্জ্বল ভবিষ্যৎ সূচনা করুন 🌟</h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            
+            <!-- Message Content -->
+            <div class="text-slate-700 text-base md:text-lg space-y-4 text-justify leading-relaxed">
+              <p>
+                প্রিয় অভিভাবক, <br>
+                যদি আপনি এমন একটি প্রতিষ্ঠান খুঁজে থাকেন যেখানে আপনার সন্তান শুধু মুখস্থ পড়াশোনা না করে <span class="text-biksPink font-bold border-b-2 border-pink-200">নিজেকে জানতে শেখে</span>, আত্মবিশ্বাসী, ভদ্র ও আধুনিক চিন্তার মানুষ হয়ে বড় হয় — তাহলে <b class="text-biksBlue">BIKS</b> হতে পারে আপনার সন্তানের ভবিষ্যতের সঠিক সূচনা।
+              </p>
+              <p>
+                আমাদের শিক্ষকরা শুধু পড়ান না — তারা শিশুদের ভালোবাসেন এবং আনন্দের মাধ্যমে বুঝে শেখান। 
+                <b class="text-slate-800">DSAB Method</b> ও <b class="text-slate-800">British Council ট্রেইনিং</b>-এ প্রস্তুত আমাদের শিক্ষকরা প্রতিটি শিশুর শেখাকে উৎসবে পরিণত করেন।
+              </p>
+              <p class="bg-blue-50/50 border-l-4 border-biksBlue p-3 rounded-r-xl italic text-sm text-slate-600">
+                "আমরা বিশ্বাস করি, <span class="font-bold text-biksBlue">Technology + Morality = Future Education</span>. তাই এখানে ডিজিটাল দুনিয়ার সাথে তাল মিলিয়ে চলার পাশাপাশি শৃঙ্খলা, সম্মান ও মানবিকতা শেখানো হয়।"
+              </p>
+            </div>
+
+            <!-- Dynamic USP Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              
+              <!-- USP Item 1 -->
+              <div class="bg-blue-50/70 p-4 rounded-2xl border border-blue-100/50 hover:shadow-md transition-all">
+                <div class="w-10 h-10 rounded-xl bg-biksBlue text-white flex items-center justify-center text-lg mb-3 shadow-md">
+                  <i class="fas fa-users"></i>
+                </div>
+                <h3 class="font-bold text-slate-800 text-base">ক্লাস সাইজ মাত্র ১২–১৫ জন</h3>
+                <p class="text-slate-500 text-xs mt-1">প্রতিটি শিশু যাতে পায় ব্যক্তিগত মনোযোগ, গভীর যত্ন এবং পূর্ণ শিক্ষক সহায়তা।</p>
+              </div>
+
+              <!-- USP Item 2 -->
+              <div class="bg-pink-50/70 p-4 rounded-2xl border border-pink-100/50 hover:shadow-md transition-all">
+                <div class="w-10 h-10 rounded-xl bg-biksPink text-white flex items-center justify-center text-lg mb-3 shadow-md">
+                  <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="font-bold text-slate-800 text-base">ডিজিটাল ট্রেইন্ড টিচার্স</h3>
+                <p class="text-slate-500 text-xs mt-1">British Council ট্রেইন্ড মেন্টরদের দিয়ে আন্তর্জাতিক মানের পাঠদান পদ্ধতি।</p>
+              </div>
+
+              <!-- USP Item 3 -->
+              <div class="bg-amber-50/70 p-4 rounded-2xl border border-amber-100/50 hover:shadow-md transition-all">
+                <div class="w-10 h-10 rounded-xl bg-biksYellow text-white flex items-center justify-center text-lg mb-3 shadow-md">
+                  <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3 class="font-bold text-slate-800 text-base">টেকনোলজি ও মোরালিটি</h3>
+                <p class="text-slate-500 text-xs mt-1">কোর নৈতিক মূল্যবোধ শিক্ষার সাথে ফিউচার-রেডি আধুনিক টেকনোলজি স্কিল।</p>
+              </div>
+
+              <!-- USP Item 4 -->
+              <div class="bg-emerald-50/70 p-4 rounded-2xl border border-emerald-100/50 hover:shadow-md transition-all">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-lg mb-3 shadow-md">
+                  <i class="fas fa-smile-beam"></i>
+                </div>
+                <h3 class="font-bold text-slate-800 text-base">আনন্দময় শিক্ষণ</h3>
+                <p class="text-slate-500 text-xs mt-1">ভয়হীন হাসিখুশি পরিবেশ, যার ফলে শিশুরা প্রতিদিন আগ্রহ নিয়ে স্কুলে যায়।</p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Special Offer Block -->
+    <section class="mb-16 bg-gradient-to-r from-biksYellow via-orange-500 to-amber-600 rounded-3xl p-6 md:p-10 shadow-2xl text-white relative overflow-hidden">
+      <div class="absolute -right-16 -bottom-16 w-60 h-60 bg-white/10 rounded-full filter blur-xl"></div>
+      
+      <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="text-center md:text-left">
+          <span class="inline-block bg-white/20 text-white font-bold text-xs px-3.5 py-1 rounded-full mb-3 uppercase tracking-wider animate-pulse-fast">
+            Limited Time Offer ⏳
+          </span>
+          <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">ভর্তি স্পেশাল মহাধামাকা অফার!</h2>
+          <p class="text-orange-50 mt-2 text-base md:text-lg max-w-xl">
+            আজই আপনার সন্তানের উজ্জ্বল ভবিষ্যতের সিদ্ধান্ত নিন এবং লুফে নিন সেরা সুযোগগুলো।
+          </p>
+        </div>
+        
+        <!-- Offer Badges Grid -->
+        <div class="grid grid-cols-2 gap-3 w-full md:w-auto">
+          <div class="bg-white/15 backdrop-blur-md p-4 rounded-2xl text-center border border-white/20">
+            <span class="block text-3xl font-black text-yellow-300">৫০%</span>
+            <span class="text-xs font-semibold">শিক্ষাবৃত্তি ছাড়!</span>
+          </div>
+          <div class="bg-white/15 backdrop-blur-md p-4 rounded-2xl text-center border border-white/20 flex flex-col justify-center">
+            <span class="block text-lg font-black text-yellow-200">ফ্রি ক্লাস</span>
+            <span class="text-xs font-semibold">নভেম্বর ও ডিসেম্বর</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Campuses & Address Section -->
+    <section class="mb-16">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-800">🏫 আমাদের ক্যাম্পাস সমূহ</h2>
+        <p class="text-slate-500 text-sm mt-1">সরাসরি ঘুরে এসে আপনার সোনামণির প্রিয় শিক্ষা প্রাঙ্গণটি দেখে যান</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        
+        <!-- New Campus -->
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 hover:shadow-lg transition-all-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center space-x-3 mb-4">
+              <span class="w-8 h-8 rounded-full bg-blue-100 text-biksBlue flex items-center justify-center font-bold">
+                ২
+              </span>
+              <h3 class="font-bold text-lg text-slate-800">২য় ক্যাম্পাস (নতুন)</h3>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              <i class="fas fa-map-marker-alt text-biksBlue mr-2"></i>
+              <b>৪৯/এ আর.কে. মিশন রোড</b>, সেন্ট্রাল ওমেন্স কলেজ-এর পাশে, টিকাটুলি, ঢাকা।
+            </p>
+          </div>
+          <button onclick="copyAddress('৪৯/এ আর.কে. মিশন রোড, সেন্ট্রাল ওমেন্স কলেজ-এর পাশে')" class="w-full bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-biksBlue font-semibold py-2 rounded-xl text-xs transition-all border border-slate-200 flex items-center justify-center space-x-1">
+            <i class="far fa-copy"></i>
+            <span>ঠিকানাটি কপি করো</span>
+          </button>
+        </div>
+
+        <!-- Old Campus -->
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 hover:shadow-lg transition-all-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center space-x-3 mb-4">
+              <span class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold">
+                ১
+              </span>
+              <h3 class="font-bold text-lg text-slate-800">১ম ক্যাম্পাস (প্রধান)</h3>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              <i class="fas fa-map-marker-alt text-slate-400 mr-2"></i>
+              <b>১৩/বি অভয় দাস লেন</b>, কামরুন্নেসা স্কুলের পাশে, টিকাটুলি, ঢাকা।
+            </p>
+          </div>
+          <button onclick="copyAddress('১৩/বি অভয় দাস লেন, টিকাটুলি, ঢাকা')" class="w-full bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-biksBlue font-semibold py-2 rounded-xl text-xs transition-all border border-slate-200 flex items-center justify-center space-x-1">
+            <i class="far fa-copy"></i>
+            <span>ঠিকানাটি কপি করো</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Sticky Mobile Action Footer -->
+  <div class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md py-3 px-4 shadow-2xl border-t border-slate-100 flex items-center justify-around md:hidden">
+    <a href="tel:+8801815650971" class="flex flex-col items-center text-slate-600 hover:text-biksBlue transition-colors">
+      <i class="fas fa-phone-alt text-lg"></i>
+      <span class="text-[10px] mt-1 font-bold">কল করুন</span>
+    </a>
+    <a href="https://api.whatsapp.com/send?phone=8801815650971&text=BIKS%20Admission%20Query" target="_blank" class="flex items-center space-x-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 rounded-full shadow-md text-sm font-bold transition-all">
+      <i class="fab fa-whatsapp text-lg"></i>
+      <span>হোয়াটসঅ্যাপ</span>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=100057578854843" target="_blank" class="flex flex-col items-center text-slate-600 hover:text-biksBlue transition-colors">
+      <i class="fab fa-facebook-f text-lg"></i>
+      <span class="text-[10px] mt-1 font-bold">ফেসবুক</span>
+    </a>
+  </div>
+
+  <!-- Main Desktop Footer -->
+  <footer class="bg-slate-900 text-slate-400 py-12 px-4 text-center mt-12 pb-24 md:pb-12">
+    <div class="max-w-4xl mx-auto space-y-6">
+      
+      <!-- Brand & Tagline -->
+      <div class="space-y-2">
+        <h3 class="text-white text-2xl font-black tracking-wider">BIKS</h3>
+        <p class="text-sm max-w-md mx-auto text-slate-400">
+          যেখানে শিশুরা হাসতে হাসতে শেখে, আর অভিভাবকরা নিশ্চিন্ত থাকে।
+        </p>
+      </div>
+
+      <!-- Quick Contact Info Grid -->
+      <div class="flex flex-wrap justify-center gap-6 text-sm py-4 border-y border-slate-800">
+        <a href="tel:+8801815650971" class="hover:text-white transition-colors flex items-center space-x-2">
+          <i class="fas fa-phone text-biksYellow"></i>
+          <span>০১৮১৫-৬৫০৯৭১</span>
+        </a>
+        <span class="hidden sm:inline text-slate-700">|</span>
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-map-marker-alt text-biksPink"></i>
+          <span>টিকাটুলি, ঢাকা</span>
+        </div>
+        <span class="hidden sm:inline text-slate-700">|</span>
+        <a href="https://www.facebook.com/profile.php?id=100057578854843" target="_blank" class="hover:text-white transition-colors flex items-center space-x-2">
+          <i class="fab fa-facebook text-sky-400"></i>
+          <span>অফিসিয়াল ফেসবুক পেজ</span>
+        </a>
+      </div>
+
+      <!-- Footer Bottom Notes -->
+      <div class="text-[11px] text-slate-500 space-y-1">
+        <p>© ২০২৬ BIKS. সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>Developed by ❤️ Kazi Hasan Al Mahmud.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Notification Banner / Custom Alert Toast -->
+  <div id="toast" class="fixed bottom-20 md:bottom-6 right-4 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-slate-800 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-2 text-sm border border-slate-700">
+      <span id="toast-icon">✨</span>
+      <span id="toast-msg">বার্তা কপি করা হয়েছে!</span>
+    </div>
+  </div>
+
+  <script>
+    // Audio synthesis setup (For sound effect on click, without external files)
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    
+    function playPopSound() {
+      if (!audioCtx) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        // Pop sound profile
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(1000, audioCtx.currentTime + 0.15);
+        
+        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+        
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.15);
+      } catch (err) {
+        // Browser block on audio before interaction is handled gracefully
+      }
+    }
+
+    // Dynamic Kids Messages Data with Mascot details
+    const kidsMessages = [
+      {
+        emoji: "🦁",
+        bgColor: "from-amber-50 to-orange-100",
+        borderColor: "border-biksYellow",
+        text: "🦁 তোমার জন্য এসেছে এক সাহসী বাঘ!<br>জানো, বাঘ কখনো হাল ছাড়ে না — ঠিক তোমার মতোই! 💪<br><br><span class='text-xs text-slate-500 block mt-2'>দেখো তো, তোমার বন্ধুর মোবাইলে কী এসেছে?</span>"
+      },
+      {
+        emoji: "🐰",
+        bgColor: "from-pink-50 to-rose-100",
+        borderColor: "border-biksPink",
+        text: "🐰 হপ হপ! তোমার জন্য এসেছে এক লাফানো খরগোশ! 🐇<br>যে সবসময় নতুন কিছু করতে চায়। ঠিক তোমার মতোই কৌতূহলী! 😍<br><br><span class='text-xs text-slate-500 block mt-2'>বন্ধুর মোবাইলে স্ক্যান করো দেখি ওর জন্য কে এসেছে?</span>"
+      },
+      {
+        emoji: "🐝",
+        bgColor: "from-yellow-50 to-amber-100",
+        borderColor: "border-yellow-400",
+        text: "🐝 তোমার জন্য এসেছে এক কর্মঠ মৌমাছি! 🐝<br>যে ছোট হলেও দারুণ পরিশ্রমী — যেমন তুমি! 🌼<br><br><span class='text-xs text-slate-500 block mt-2'>দেখো না, তোমার বন্ধুর বার্তায় কে এসেছে?</span>"
+      },
+      {
+        emoji: "🐧",
+        bgColor: "from-blue-50 to-indigo-100",
+        borderColor: "border-blue-400",
+        text: "🐧 পেঙ্গুইন এসেছে তোমার জন্য! 🐧<br>সে ঠান্ডায়ও হাসে, নাচে, আর কখনো থামে না — ঠিক তোমার মতোই আনন্দে ভরা! 💃<br><br><span class='text-xs text-slate-500 block mt-2'>তোমার বন্ধুর ফোনে স্ক্যান করো দেখি কে ওর জন্য এসেছে!</span>"
+      },
+      {
+        emoji: "🐯",
+        bgColor: "from-orange-50 to-amber-100",
+        borderColor: "border-orange-400",
+        text: "🐯 টাইগার হাজির! 🐯<br>কারণ তুমি সাহসী, বুদ্ধিমান আর হাসিখুশি — BIKS তোমার মতো বাচ্চাদেরই ভালোবাসে! 🌟<br><br><span class='text-xs text-slate-500 block mt-2'>দেখো তো, তোমার বন্ধুর ফোনে কী আসে?</span>"
+      },
+      {
+        emoji: "🐼",
+        bgColor: "from-slate-50 to-slate-200",
+        borderColor: "border-slate-400",
+        text: "🐼 তোমার জন্য এসেছে এক মিষ্টি পান্ডা! 🐼<br>সে যেমন শান্ত, তেমনি দয়ালু — যেমন তোমার মন। ❤️<br><br><span class='text-xs text-slate-500 block mt-2'>তোমার বন্ধুর মোবাইলে দেখি কে এসেছে?</span>"
+      }
+    ];
+
+    // Globals
+    let activeMessageIndex = 0;
+    let particles = [];
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let animationFrameId = null;
+
+    // Canvas Resize Handler
+    function resizeCanvas() {
+      canvas.width = canvas.parentElement.clientWidth;
+      canvas.height = canvas.parentElement.clientHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+
+    // Confetti Physics Class
+    class Particle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 8 + 4;
+        this.color = ['#0b63d6', '#e91e63', '#ff9800', '#25d366', '#a855f7'][Math.floor(Math.random() * 5)];
+        this.speedX = Math.random() * 8 - 4;
+        this.speedY = Math.random() * -8 - 4;
+        this.gravity = 0.2;
+        this.rotation = Math.random() * 360;
+        this.rotationSpeed = Math.random() * 10 - 5;
+      }
+      update() {
+        this.speedY += this.gravity;
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.rotation += this.rotationSpeed;
+      }
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation * Math.PI / 180);
+        ctx.fillStyle = this.color;
+        ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+        ctx.restore();
+      }
+    }
+
+    // Trigger Confetti Pop
+    function startConfetti() {
+      resizeCanvas();
+      particles = [];
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2 + 50;
+      
+      for (let i = 0; i < 80; i++) {
+        particles.push(new Particle(centerX, centerY));
+      }
+      
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      animateConfetti();
+    }
+
+    // Confetti Render Loop
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, index) => {
+        p.update();
+        p.draw();
+        // Remove off-screen particles
+        if (p.y > canvas.height) {
+          particles.splice(index, 1);
+        }
+      });
+      if (particles.length > 0) {
+        animationFrameId = requestAnimationFrame(animateConfetti);
+      }
+    }
+
+    // Toast Alert notification helper
+    function showToast(msg, icon = "✨") {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-msg').innerText = msg;
+      document.getElementById('toast-icon').innerText = icon;
+      toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2500);
+    }
+
+    // Pick a message random with rotation safeguard
+    function pickRandomMessage() {
+      let nextIndex;
+      do {
+        nextIndex = Math.floor(Math.random() * kidsMessages.length);
+      } while (nextIndex === activeMessageIndex && kidsMessages.length > 1);
+      
+      activeMessageIndex = nextIndex;
+      return kidsMessages[activeMessageIndex];
+    }
+
+    // Open Gift Box Handler
+    function openGift() {
+      // Resume or active audio context first
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      playPopSound();
+      startConfetti();
+
+      // Set Message Content
+      const data = pickRandomMessage();
+      document.getElementById('animal-emoji').innerText = data.emoji;
+      document.getElementById('message-text').innerHTML = data.text;
+      
+      // Card Theme adjustments dynamically
+      const card = document.getElementById('animal-card');
+      card.className = `w-full max-w-md bg-gradient-to-b ${data.bgColor} rounded-2xl p-6 border-2 border-dashed ${data.borderColor} shadow-inner relative overflow-hidden mb-6`;
+
+      // Visual Transition
+      document.getElementById('gift-closed').classList.add('hidden');
+      const openedSection = document.getElementById('gift-opened');
+      openedSection.classList.remove('hidden');
+      openedSection.classList.add('animate-fade-in');
+    }
+
+    // Shuffle and get next gift message
+    function shuffleGift() {
+      playPopSound();
+      startConfetti();
+      
+      const data = pickRandomMessage();
+      document.getElementById('animal-emoji').innerText = data.emoji;
+      document.getElementById('message-text').innerHTML = data.text;
+      
+      const card = document.getElementById('animal-card');
+      card.className = `w-full max-w-md bg-gradient-to-b ${data.bgColor} rounded-2xl p-6 border-2 border-dashed ${data.borderColor} shadow-inner relative overflow-hidden mb-6 transform scale-95 transition-all duration-300`;
+      
+      setTimeout(() => {
+        card.classList.remove('scale-95');
+      }, 100);
+    }
+
+    // Clipboard helpers (Using standard fallbacks as per instruction guidelines)
+    function copyGiftMessage() {
+      const data = kidsMessages[activeMessageIndex];
+      // Clean HTML tags for pure plain text copying
+      const plainText = data.text.replace(/<[^>]*>/g, ' ');
+      
+      const tempTextArea = document.createElement("textarea");
+      tempTextArea.value = `BIKS থেকে আমার জন্য এসেছে বিশেষ বার্তা: "${plainText}" তুমিও তোমার শিশুর জন্য বিশেষ বার্তা পেতে এখনই স্ক্যান করো!`;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      
+      try {
+        document.execCommand('copy');
+        showToast("মেসেজটি কপি করা হয়েছে!", "🎉");
+      } catch (err) {
+        showToast("কপি করা সম্ভব হয়নি।", "❌");
+      }
+      document.body.removeChild(tempTextArea);
+    }
+
+    function copyAddress(address) {
+      const tempTextArea = document.createElement("textarea");
+      tempTextArea.value = address;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      try {
+        document.execCommand('copy');
+        showToast("ঠিকানা কপি করা হয়েছে!", "📍");
+      } catch (err) {
+        showToast("কপি ব্যর্থ হয়েছে", "❌");
+      }
+      document.body.removeChild(tempTextArea);
+    }
+
+    // Ensure initialization on window load
+    window.onload = function() {
+      resizeCanvas();
+    }
+  </script>
+</body>
+</html>
